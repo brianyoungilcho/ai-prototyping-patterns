@@ -1,54 +1,53 @@
 # AI Prototyping Patterns
 
-Practical patterns for building full-stack products with AI tools. Based on real experience shipping products like [Pupsday.com](https://pupsday.com).
+Practical patterns for building full-stack products with AI-native tools. Based on shipping real products (e.g. [Pupsday](https://pupsday.com)) and what we operationalize at [BARO](https://heybaro.com).
 
-## Who This Is For
+## Who this is for
 
 Solo founders and small teams who want to:
-- Ship products faster using AI tools
+
+- Ship faster using **Claude**, **Cursor**, **Codex**, **Vercel**, and **Supabase**
 - Build full-stack applications without a large team
-- Understand when to use AI vs. traditional approaches
+- Know when AI helps vs. when you need hard engineering or ops discipline
 
-## The Stack
+## The stack (today)
 
-| Tool | Role | When to Use |
+| Tool | Role | When to use |
 |------|------|-------------|
-| [Claude](https://claude.ai) | Architecture, code generation, debugging | Complex reasoning, multi-file changes |
-| [Cursor](https://cursor.sh) | AI-augmented IDE | Daily development workflow |
-| [Lovable](https://lovable.dev) | UI prototyping | Initial design exploration |
-| [Supabase](https://supabase.com) | Backend (DB, Auth, Edge Functions) | Most full-stack projects |
-| [Vercel](https://vercel.com) | Deployment | React/Next.js projects |
+| [Claude](https://claude.ai) | Reasoning, architecture, reviews, long-context work | Ambiguous specs, system design, careful refactors |
+| [Cursor](https://cursor.com) | Day-to-day IDE + repo navigation | Almost all implementation; multi-file edits |
+| **Codex** | Fast implementation passes in real repos | Boilerplate, broad refactors, test generation |
+| [Vercel](https://vercel.com) | Hosting, previews, production | Next.js / edge-friendly backends; PR previews |
+| [Supabase](https://supabase.com) | Postgres, auth, RLS, edge functions | Default data plane until you outgrow it |
+| [GitHub](https://github.com) | Source of truth, review, light CI | Collaboration and shipping discipline |
 
-## Patterns
+## Pattern index
 
-### Prompting & Code Generation
-- [Architecture Planning Prompts](patterns/architecture-planning.md) — How to use Claude for system design
-- [Effective Code Generation](patterns/code-generation.md) — Getting better output from AI coding tools
-- [Debugging with AI](patterns/debugging.md) — Using Claude to fix errors faster
-
-### Supabase Patterns
-- [Database Schema Design](patterns/supabase-schema.md) — Data modeling for common use cases
-- [Row-Level Security](patterns/supabase-rls.md) — Securing data with Postgres policies
-- [Edge Functions](patterns/supabase-edge-functions.md) — Custom backend logic
-
-### Full-Stack Recipes
-- [Quiz to Recommendation Flow](patterns/quiz-recommendation.md) — Multi-step quiz with personalized results
-- [Subscription Billing](patterns/subscription-billing.md) — Stripe integration with Supabase
-- [User Authentication](patterns/user-auth.md) — Auth flows and session management
+| Pattern | When to use it | Anti-patterns |
+|--------|----------------|---------------|
+| [Architecture planning prompts](patterns/architecture-planning.md) | Before coding; locking contracts between services | One-shot “build me an app” without constraints |
+| [Effective code generation](patterns/code-generation.md) | Boilerplate, CRUD, repetitive modules | Generating core IP or security-critical paths untested |
+| [Debugging with AI](patterns/debugging.md) | Log traces, repro steps, hypothesis churn | Pasting secrets; accepting fixes you don’t understand |
+| [Database schema design](patterns/supabase-schema.md) | New features needing clear data model | Over-normalizing for v0; skipping migrations discipline |
+| [Row-level security](patterns/supabase-rls.md) | Multi-tenant or user-scoped data | RLS as the only auth story; no service-role hygiene |
+| [Edge functions](patterns/supabase-edge-functions.md) | Webhooks, light orchestration, glue code | Long-running jobs; heavy CPU in edge |
+| [Quiz → recommendation](patterns/quiz-recommendation.md) | Guided selling; personalization | Opaque scoring; no eval of recommendations |
+| [Subscription billing](patterns/subscription-billing.md) | Recurring revenue flows | Home-grown billing when Stripe + patterns suffice |
+| [User authentication](patterns/user-auth.md) | Sessions, magic links, OAuth | Rolling crypto by hand |
 
 ## Philosophy
 
-### Speed Over Perfection
+### Speed over perfection
 
-AI-generated code isn't always optimal. But it's *fast*. Generate a working version, then optimize the parts that matter.
+AI-generated code isn't always optimal—but it’s *fast*. Generate a working version, then optimize what matters.
 
-### Own Your Core Logic
+### Own your core logic
 
 Use AI for boilerplate and standard patterns. Design and review your competitive advantage carefully.
 
-### Iterate in Production
+### Iterate in production
 
-With cheap deployments, production becomes your testing environment. Ship small changes frequently.
+With cheap deployments and good observability, production becomes a learning environment. Ship small changes frequently.
 
 ## Examples
 
@@ -60,6 +59,6 @@ MIT — use however you want. Attribution appreciated but not required.
 
 ## Connect
 
-- [LinkedIn](https://linkedin.com/in/bcho)
-- [GitHub](https://github.com/brianyoungilcho)
-- [whynow.ai](https://whynow.ai)
+- [LinkedIn](https://linkedin.com/in/bcho)  
+- [GitHub](https://github.com/brianyoungilcho)  
+- [whynow.ai](https://whynow.ai)  
